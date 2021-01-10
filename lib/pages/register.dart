@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sql/models/user.dart';
+import 'package:flutter_sql/pages/home.dart';
+import 'package:flutter_sql/utils/database.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -6,6 +9,8 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  var username;
+  var password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +33,12 @@ class _RegisterPageState extends State<RegisterPage> {
                 TextField(
                   decoration: InputDecoration(
                     labelText: 'Username',
-                  ),                                
+                  ), 
+                  onChanged: (value) {
+                    setState(() {
+                      username = value;
+                    });
+                  },                               
                 ),
                 SizedBox(height: 15.0,),
                 TextField(
@@ -36,13 +46,25 @@ class _RegisterPageState extends State<RegisterPage> {
                     labelText: 'Password',
                     
                   ),
+                  onChanged: (value) {
+                    setState(() {
+                      password = value;
+                    });
+                  },
                   obscureText: true,                                
                 ),
                 SizedBox(height: 25.0,),
                 RaisedButton(
                   child: Text('Register',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight:FontWeight.bold),),
                   color: Colors.blue,
-                  onPressed: (){},
+                  onPressed: (){
+                    var newDBuser = User(username: username, password: password);
+                    DbaseProvider.db.newUser(newDBuser);
+
+                    Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()));
+                  },
                 ),
 
               ],

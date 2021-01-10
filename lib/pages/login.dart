@@ -40,10 +40,14 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 25.0,),
                 RaisedButton(
-                  child: Text('Sign In',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight:FontWeight.bold),),
                   color: Colors.blue,
+                  textColor: Colors.red,
                   onPressed: (){},
+                  child: Text('Sign In',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight:FontWeight.bold),),
+                  
+                  
                 ),
+                
 
               ],
             ),
